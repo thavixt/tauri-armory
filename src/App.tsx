@@ -1,7 +1,8 @@
-import type { PropsWithChildren } from "react";
+import { useEffect, useState, type PropsWithChildren } from "react";
 import { NavLinks } from "./components/navlink";
 import { NavLink } from "./components/navlinks";
 import { Flex } from "./components/ui/flex";
+import { TauriArmoryApi } from "./api/tauri";
 
 interface FooterLink {
   text: string;
@@ -15,6 +16,15 @@ interface PageProps {
 }
 
 export function Page({ children, title = "Page title", subtitle, footer = [] }: PropsWithChildren<PageProps>) {
+  useEffect(() => {
+    console.log(1);
+    (async function test() {
+      const api = new TauriArmoryApi();
+      const res = await api.getCharacter("Thavixt");
+      // console.log(res);
+    })();
+  }, []);
+
   return (
     <>
       <header>
